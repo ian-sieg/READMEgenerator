@@ -2,7 +2,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const generateMarkdown = require('./utils/generateMarkdown');
-const generate = require('./utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -22,7 +21,15 @@ const questions = [
     {
         type: 'input',
         name: 'email',
-        message: 'What is your email address?'
+        message: 'What is your email address?',
+        validate: (ans) => {
+            if(ans !== '') {
+                return true;
+            } else {
+                console.error('Your email cannot be blank');
+                return false;
+            };
+        },
     },
     {
         type: 'input',
@@ -53,28 +60,28 @@ const questions = [
     {
         type: 'input',
         name: 'install',
-        message: 'Please provide installation instructions or hit enter if there are none',
+        message: 'Please provide installation instructions\n  Or hit enter if there are none:',
     },
     {
         type: 'input',
         name: 'usage',
-        message: 'Please provide usage instructions or hit enter if there are none',
+        message: 'Please provide usage instructions\n  Or hit enter if there are none:',
     },
     {
         type: 'input',
-        name: 'contributing',
-        message: 'Please provide instructions on how to contribute to this project or hit enter if there are none',
+        name: 'contribute',
+        message: 'Please provide instructions on how to contribute to this project\n  Or hit enter if there are none:',
     },
     {
         type: 'input',
         name: 'test',
-        message: 'Please provide instructions on how to test your project or hit enter if there are none',
+        message: 'Please provide instructions on how to test your project\n  Or hit enter if there are none:',
     },
     {
         type: 'list',
         name: 'license',
         message: 'Choose a license',
-        choices: ['MIT', 'GNU GPLv3', 'Apache License 2.0', 'ISC License'],
+        choices: ['MIT', 'GNU GPLv3', 'Apache 2.0', 'ISC'],
     },
 ];
 
