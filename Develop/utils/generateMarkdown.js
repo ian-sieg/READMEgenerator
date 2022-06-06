@@ -1,19 +1,25 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
-  return `![A badge of the ${license} License](https://img.shields.io/badge/License-${license.split(' ').join('')}-brightgreen)`
+  if (license === 'none') {
+    return ''
+  } else {
+    return `![A badge of the ${license} License](https://img.shields.io/badge/License-${license.split(' ').join('')}-brightgreen)`
+  }
 };
 
 function renderLicenseLink(license) {
   switch (license) {
     case 'MIT':
-      return 'https://choosealicense.com/licenses/mit/';
+      return `## License\n[${license}](https://choosealicense.com/licenses/mit/) License`;
     case 'GNU GPLv3':
-      return 'https://www.gnu.org/licenses/gpl-3.0.en.html';
+      return `## License\n[${license}](https://www.gnu.org/licenses/gpl-3.0.en.html) License`;
     case 'Apache 2.0':
-      return 'https://www.apache.org/licenses/LICENSE-2.0';
+      return `## License\n[${license}](https://www.apache.org/licenses/LICENSE-2.0) License`;
     case 'ISC':
-      return 'https://choosealicense.com/licenses/isc/'
+      return `## License\n[${license}](https://choosealicense.com/licenses/isc/) License`
+    case 'none':
+      return ''
   }
 };
 
@@ -71,8 +77,7 @@ function generateMarkdown(data) {
   ${contributeSect}
   ${testSect}
 
-  ## License
-  [${data.license}](${renderLicenseLink(data.license)}) License
+  ${renderLicenseLink(data.license)}
 
   ## Questions
   - Github Profile: https://github.com/${data.username}
