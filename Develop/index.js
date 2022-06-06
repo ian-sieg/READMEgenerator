@@ -34,7 +34,7 @@ const questions = [
     {
         type: 'input',
         name: 'title',
-        message: 'What is your project called?',
+        message: 'What is your project title?',
         validate: (ans) => {
             if(ans !== '') {
                 return true;
@@ -60,22 +60,22 @@ const questions = [
     {
         type: 'input',
         name: 'install',
-        message: 'Please provide installation instructions\n  Or hit enter if there are none:',
+        message: 'Please provide installation instructions. Or hit enter if there are none:',
     },
     {
         type: 'input',
         name: 'usage',
-        message: 'Please provide usage instructions\n  Or hit enter if there are none:',
+        message: 'Please provide usage instructions. Or hit enter if there are none:',
     },
     {
         type: 'input',
         name: 'contribute',
-        message: 'Please provide instructions on how to contribute to this project\n  Or hit enter if there are none:',
+        message: 'Please provide instructions on how to contribute to this project. Or hit enter if there are none:',
     },
     {
         type: 'input',
         name: 'test',
-        message: 'Please provide instructions on how to test your project\n  Or hit enter if there are none:',
+        message: 'Please provide instructions on how to test your project. Or hit enter if there are none:',
     },
     {
         type: 'list',
@@ -87,10 +87,8 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    let readMeContent = generateMarkdown(data)
-    
-    fs.writeFile(fileName, readMeContent, (err) =>
-        err ? console.log(err) : console.log('Success! Check yo files')
+    fs.writeFile(fileName, generateMarkdown(data), (err) =>
+        err ? console.log(err) : console.log('Success! Check your files')
     );
 }
 
@@ -99,7 +97,7 @@ function init() {
     inquirer
     .prompt(questions)
     .then((ans) => {
-        const fileName = `README.md`;
+        const fileName = `${ans.title.toLowerCase().split(' ').join('')}.md`;
         const data = ans
         writeToFile(fileName, data)
     })
