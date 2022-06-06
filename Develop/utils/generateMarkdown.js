@@ -12,52 +12,37 @@ function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  let installToc = 'Installation'
-  let usageToc = 'Usage'
-  let contributeToc = 'Contributing'
-  let testToc = 'Testing'
-
-  function generateToc(section) {
-    if (!section.install) {
-      installToc = ''
-    };
-    if (!section.usage) {
-      usageToc = ''
-    };
-    if (!data.contribute) {
-      contributeToc = ''
-    };
-    if (!data.test) {
-      testToc = ''
-    };
-
-    return `- [${installToc}](#${installToc})
-  - [${usageToc}](#${usageToc})
-  - [${contributeToc}](#${contributeToc})
-  - [${testToc}](#${testToc})`
-  }
+  let installTitle = 'Installation'
+  let usageTitle = 'Usage'
+  let contributeTitle = 'Contributing'
+  let testTitle = 'Testing'
 
   if (data.install) {
-    var installSect = `## ${installToc}:\n\t${data.install}`
+    var installToc = `- [${installTitle}](#${installTitle})`
+    var installSect = `## ${installTitle}:\n\t${data.install}`
   } else {
+    installToc = ''
     installSect = ''
   };
-
   if (data.usage) {
-    var usageSect = `## ${usageToc}:\n\t${data.usage}`
+    var usageToc = `- [${usageTitle}](#${usageTitle})`
+    var usageSect = `## ${usageTitle}:\n\t${data.usage}`
   } else {
+    usageToc = ''
     usageSect = ''
   };
-  
   if (data.contribute) {
-    var contributeSect = `## ${contributeToc}:\n\t${data.contribute}`
+    var contributeToc = `- [${contributeTitle}](#${contributeTitle})`
+    var contributeSect = `## ${contributeTitle}:\n\t${data.contribute}`
   } else {
+    contributeToc = ''
     contributeSect = ''
   };
-
   if (data.test) {
-    var testSect = `## ${testToc}:\n\t${data.test}`
+    var testToc = `- [${testTitle}](#${testTitle})`
+    var testSect = `## ${testTitle}:\n\t${data.test}`
   } else {
+    testToc = ''
     testSect = ''
   };
 
@@ -66,8 +51,10 @@ function generateMarkdown(data) {
   ${data.description}
 
   ## Table of Contents:
-  - [${usageToc}](#${usageToc})
-  ${generateToc(data)}
+  ${installToc}
+  ${usageToc}
+  ${contributeToc}
+  ${testToc}
   - [License](#License)
   - [Questions](#Questions)
 
@@ -75,8 +62,10 @@ function generateMarkdown(data) {
   ${usageSect}
   ${contributeSect}
   ${testSect}
+
   ## License
     ${data.license} License
+
   ## Questions
   - Github Profile: https://github.com/${data.username}
   - Email me at: ${data.email}
