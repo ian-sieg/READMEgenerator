@@ -97,7 +97,7 @@ function init() {
     inquirer
     .prompt(questions)
     .then((ans) => {
-        const fileName = `${ans.title.toLowerCase().split(' ').join('')}.md`;
+        const fileName = `${ans.title.toUpperCase().split(' ').join('-')}-README.md`;
         const data = ans
         writeToFile(fileName, data)
     })
