@@ -6,7 +6,7 @@ This application runs in Node and prompts the user with questions to generate a 
 
 ## Video Demo
 
-
+https://user-images.githubusercontent.com/98928887/172175656-b97f8e12-299e-4971-9e3b-db88da88896c.mp4
 
 ## Installation
 
