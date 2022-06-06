@@ -8,7 +8,7 @@ function renderLicenseBadge(license) {
   }
 };
 
-function renderLicenseLink(license) {
+function renderLicenseSection(license) {
   switch (license) {
     case 'MIT':
       return `## License\n[${license}](https://choosealicense.com/licenses/mit/) License`;
@@ -77,7 +77,7 @@ function generateMarkdown(data) {
   ${contributeSect}
   ${testSect}
 
-  ${renderLicenseLink(data.license)}
+  ${renderLicenseSection(data.license)}
 
   ## Questions
   - Github Profile: https://github.com/${data.username}
