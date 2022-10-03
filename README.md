@@ -1,4 +1,4 @@
-# 09 README Generator
+# README Generator
 
 ## Description
 
